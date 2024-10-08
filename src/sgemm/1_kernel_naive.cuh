@@ -14,7 +14,9 @@ B: KxN
 C: MxN
 */
 
+
 /*
+ * Row Major Order
  * alpha: scalar multiplier for product of A and B
  * beta: scalar multiplier for C
  */
@@ -30,3 +32,20 @@ __global__ void sgemm_naive(int M, int N, int K, float alpha, const float *A, co
         C[x * N + y] = alpha * temp + beta * C[x * N + y];
     }
 }
+
+/*
+ * Column Major Order
+ */
+ /*
+__global__ void sgemm_naive(int M, int N, int K, float alpha, const float *A, const float *B, float beta, float *C) {
+    const uint row = blockIdx.y * blockDim.y + threadIdx.y;
+    const uint col = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (row < M && col < N) {
+        float temp = 0.0;
+        for (int i = 0; i < K; ++i) {
+            temp += A[i * M + row] * B[col * K + i];
+        }
+        C[col * M + row] = alpha * temp + beta * C[col * M + row];
+    }
+}*/
