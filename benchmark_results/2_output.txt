@@ -1,0 +1,3 @@
+Running kernel 2 on device 0.
+Max size: 4096
+dimensions(m=n=k) 128, alpha: 0.5, beta: 3

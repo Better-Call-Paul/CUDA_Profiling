@@ -14,7 +14,7 @@ rm -rf cmake-3.25.1-Linux-x86_64.sh
 echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
-# add pi
-sudo /usr/bin/python -m ensurepip
+# install dependencies
+pip install pandas matplotlib seaborn
 
 echo "Installation and configuration complete!"

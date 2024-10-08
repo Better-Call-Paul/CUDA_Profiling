@@ -24,6 +24,7 @@ PLOT_SCRIPT="${SCRIPTS_DIR}/plot_benchmark_results.py"
 
 # Benchmark Parameters
 REPEAT_TIMES=50
+
 KERNEL_RANGE=(0 1 2 3 4 5 6 7 8 9 10 11 12)  # Kernel numbers to run
 
 # ---------------------------
