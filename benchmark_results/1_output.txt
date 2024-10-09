@@ -5,10 +5,10 @@ Average elapsed time: (0.000083) s, performance: (   50.2) GFLOPS. size: (128).
 dimensions(m=n=k) 256, alpha: 0.5, beta: 3
 Average elapsed time: (0.000164) s, performance: (  205.1) GFLOPS. size: (256).
 dimensions(m=n=k) 512, alpha: 0.5, beta: 3
-Average elapsed time: (0.001286) s, performance: (  208.8) GFLOPS. size: (512).
+Average elapsed time: (0.001286) s, performance: (  208.7) GFLOPS. size: (512).
 dimensions(m=n=k) 1024, alpha: 0.5, beta: 3
-Average elapsed time: (0.008322) s, performance: (  258.1) GFLOPS. size: (1024).
+Average elapsed time: (0.008327) s, performance: (  257.9) GFLOPS. size: (1024).
 dimensions(m=n=k) 2048, alpha: 0.5, beta: 3
-Average elapsed time: (0.066449) s, performance: (  258.5) GFLOPS. size: (2048).
+Average elapsed time: (0.066464) s, performance: (  258.5) GFLOPS. size: (2048).
 dimensions(m=n=k) 4096, alpha: 0.5, beta: 3
-Average elapsed time: (0.523483) s, performance: (  262.5) GFLOPS. size: (4096).
+Average elapsed time: (0.523874) s, performance: (  262.4) GFLOPS. size: (4096).

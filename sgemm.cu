@@ -13,14 +13,14 @@ const std::string errLogFile = "matrixValidationFailure.txt";
 int main(int argc, char **argv) {
     if (argc != 2) {
         std::cerr << "Please select a kernel (range 0 - 12, 0 for NVIDIA cuBLAS)"
-                  << std::endl;
+                  << "\n";
         exit(EXIT_FAILURE);
     }
 
     // get kernel number
     int kernel_num = std::stoi(argv[1]);
     if (kernel_num < 0 || kernel_num > 12) {
-        std::cerr << "Please enter a valid kernel number (0-12)" << std::endl;
+        std::cerr << "Please enter a valid kernel number (0-12)" << "\n";
         exit(EXIT_FAILURE);
     }
 
@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
     // successfully (the value is 0)
     cublasHandle_t handle;
     if (cublasCreate(&handle)) {
-        std::cerr << "Create cublas handle error." << std::endl;
+        std::cerr << "Create cublas handle error." << "\n";
         exit(EXIT_FAILURE);
     };
 
@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
 
     long m, n, k, max_size;
     max_size = SIZE[SIZE.size() - 1];
-    std::cout << "Max size: " << max_size << std::endl;
+    std::cout << "Max size: " << max_size << "\n";
 
     float alpha = 0.5, beta = 3.0; // GEMM input parameters, C=α*AB+β*C
 
@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
         m = n = k = size;
 
         std::cout << "dimensions(m=n=k) " << m << ", alpha: " << alpha
-                  << ", beta: " << beta << std::endl;
+                  << ", beta: " << beta << "\n";
         // Verify the correctness of the calculation, and execute it once before the
         // kernel function timing to avoid cold start errors
         if (kernel_num != 0) {
@@ -111,7 +111,7 @@ int main(int argc, char **argv) {
                 std::cout
                     << "Failed to pass the correctness verification against NVIDIA "
                        "cuBLAS."
-                    << std::endl;
+                    << "\n";
                 if (m <= 128) {
                     std::cout << " Logging faulty output into " << errLogFile << "\n";
                     std::ofstream fs;
