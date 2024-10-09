@@ -178,7 +178,7 @@ void run_sgemm_shared_mem_block(int M, int N, int K, float alpha, float *A,
     sgemm_shared_mem_block<32>
         <<<gridDim, blockDim>>>(M, N, K, alpha, A, B, beta, C);
 }
-/*
+
 void runSgemm1DBlocktiling(int M, int N, int K, float alpha, float *A, float *B,
                            float beta, float *C) {
     const uint BM = 64;
@@ -190,7 +190,7 @@ void runSgemm1DBlocktiling(int M, int N, int K, float alpha, float *A, float *B,
     sgemm1DBlocktiling<BM, BN, BK, TM>
         <<<gridDim, blockDim>>>(M, N, K, alpha, A, B, beta, C);
 }
-
+/*
 void runSgemm2DBlocktiling(int M, int N, int K, float alpha, float *A, float *B,
                            float beta, float *C) {
     const uint BK = 8;
@@ -518,9 +518,9 @@ void run_kernel(int kernel_num, int M, int N, int K, float alpha, float *A,
     case 3:
         run_sgemm_shared_mem_block(M, N, K, alpha, A, B, beta, C);
         break;
-    /*case 4:
+    case 4:
         runSgemm1DBlocktiling(M, N, K, alpha, A, B, beta, C);
-        break;
+        break;/*
     case 5:
         runSgemm2DBlocktiling(M, N, K, alpha, A, B, beta, C);
         break;

@@ -1,14 +1,14 @@
 Running kernel 3 on device 0.
 Max size: 4096
 dimensions(m=n=k) 128, alpha: 0.5, beta: 3
-Average elapsed time: (0.000010) s, performance: (  437.6) GFLOPS. size: (128).
+Average elapsed time: (0.000010) s, performance: (  437.3) GFLOPS. size: (128).
 dimensions(m=n=k) 256, alpha: 0.5, beta: 3
-Average elapsed time: (0.000017) s, performance: ( 1920.5) GFLOPS. size: (256).
+Average elapsed time: (0.000018) s, performance: ( 1915.3) GFLOPS. size: (256).
 dimensions(m=n=k) 512, alpha: 0.5, beta: 3
-Average elapsed time: (0.000122) s, performance: ( 2203.8) GFLOPS. size: (512).
+Average elapsed time: (0.000122) s, performance: ( 2202.8) GFLOPS. size: (512).
 dimensions(m=n=k) 1024, alpha: 0.5, beta: 3
-Average elapsed time: (0.000826) s, performance: ( 2598.6) GFLOPS. size: (1024).
+Average elapsed time: (0.000827) s, performance: ( 2597.6) GFLOPS. size: (1024).
 dimensions(m=n=k) 2048, alpha: 0.5, beta: 3
-Average elapsed time: (0.006889) s, performance: ( 2493.7) GFLOPS. size: (2048).
+Average elapsed time: (0.006887) s, performance: ( 2494.5) GFLOPS. size: (2048).
 dimensions(m=n=k) 4096, alpha: 0.5, beta: 3
-Average elapsed time: (0.054455) s, performance: ( 2523.9) GFLOPS. size: (4096).
+Average elapsed time: (0.054385) s, performance: ( 2527.2) GFLOPS. size: (4096).

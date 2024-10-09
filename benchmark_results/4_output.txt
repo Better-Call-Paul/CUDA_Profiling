@@ -1,3 +1,6 @@
 Running kernel 4 on device 0.
 Max size: 4096
 dimensions(m=n=k) 128, alpha: 0.5, beta: 3
+Divergence! Should 44.07, Is  6.00 (Diff 38.07) at 8
+Failed to pass the correctness verification against NVIDIA cuBLAS.
+ Logging faulty output into matrixValidationFailure.txt
