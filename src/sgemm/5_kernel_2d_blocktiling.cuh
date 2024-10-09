@@ -51,17 +51,35 @@ __global__ void __launch_bounds__((block_size_M * block_size_M) / (tile_size_M *
             B_shmem[(innerRowB + load_offset) * block_size_N + innerColB] = B[(innerRowB + load_offset) * N + innerColB];
         }
 
+        __syncthreads();
+
         A += block_size_K;
         B += block_size_K * N;
 
         for (uint dotIdx = 0; dotIdx < block_size_K; ++dotIdx) {
+            //load a and b vals into registers
+            for (uint i = 0; i < tile_size_M; ++i) {
+                M_register[i] = A_shmem[(threadRow * tile_size_M + i) * block_size_N + dotIdx];
+            }
 
+            for (uint i = 0; i < tile_size_N; ++i) {
+                N_register[i] = B_shmem[dotIdx * block_size_M + i + threadCol * tile_size_N];
+            }
         }
-        // outer loop moves the chunk across A & B
-
-        // inner loop calculates results
-
+        // through each reg 
+        for (uint n_i = 0; n_i < tile_size_M; ++n_i) {
+            for (uint m_i = 0; m_i < tile_size_N; ++m_i) {
+                thread_results[m_i * n_i] += M_register[m_i] * N_register[n_i];
+            }
+        }
+        __syncthreads();
     }
     // load into c 
+    #pragma unroll
+    for (int i = 0; i < tile_size_M; ++i) {
+        for (int j = 0; j < tile_size_N; ++j) {
+            C[(threadRow * tile_size_M)] = thread_results
+        }
+    }
 
 }
