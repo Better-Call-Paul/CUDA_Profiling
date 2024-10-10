@@ -43,11 +43,11 @@ __global__ void __launch_bounds__((block_size_M * block_size_M) / (tile_size_M *
     #pragma unroll
     for (int bckIdx = 0; bckIdx < K; bckIdx += block_size_K) {
         // load into a,b register
-        for (uint load_offset = 0; load_offset < block_size_M; ++load_offset) {
+        for (uint load_offset = 0; load_offset < block_size_M; load_offset += A_stride) {
             A_shmem[(innerRowA + load_offset) * block_size_K + innerColA] = A[(innerRowA + load_offset) * K + innerColA];
         }
 
-        for (uint load_offset = 0; load_offset < block_size_K; ++load_offset) {
+        for (uint load_offset = 0; load_offset < block_size_K; load_offset += B_stride) {
             B_shmem[(innerRowB + load_offset) * block_size_N + innerColB] = B[(innerRowB + load_offset) * N + innerColB];
         }
 

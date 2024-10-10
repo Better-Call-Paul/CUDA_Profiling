@@ -1,0 +1,5 @@
+Running kernel 5 on device 0.
+Max size: 4096
+dimensions(m=n=k) 128, alpha: 0.5, beta: 3
+[CUDA ERROR] at file /home/ec2-user/CUDA_Profiling/sgemm.cu:105:
+an illegal memory access was encountered

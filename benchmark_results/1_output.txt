@@ -1,6 +1,14 @@
 Running kernel 1 on device 0.
 Max size: 4096
 dimensions(m=n=k) 128, alpha: 0.5, beta: 3
-Divergence! Should -4.23, Is  0.00 (Diff  4.23) at 0
-Failed to pass the correctness verification against NVIDIA cuBLAS.
- Logging faulty output into matrixValidationFailure.txt
+Average elapsed time: (0.000084) s, performance: (   50.2) GFLOPS. size: (128).
+dimensions(m=n=k) 256, alpha: 0.5, beta: 3
+Average elapsed time: (0.000164) s, performance: (  205.0) GFLOPS. size: (256).
+dimensions(m=n=k) 512, alpha: 0.5, beta: 3
+Average elapsed time: (0.001286) s, performance: (  208.7) GFLOPS. size: (512).
+dimensions(m=n=k) 1024, alpha: 0.5, beta: 3
+Average elapsed time: (0.008325) s, performance: (  258.0) GFLOPS. size: (1024).
+dimensions(m=n=k) 2048, alpha: 0.5, beta: 3
+Average elapsed time: (0.066454) s, performance: (  258.5) GFLOPS. size: (2048).
+dimensions(m=n=k) 4096, alpha: 0.5, beta: 3
+Average elapsed time: (0.523822) s, performance: (  262.4) GFLOPS. size: (4096).
