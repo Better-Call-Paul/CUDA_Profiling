@@ -18,8 +18,8 @@ __global__ void __launch_bounds__((block_size_M * block_size_M) / (tile_size_M *
 
     const uint innerRowA = threadIdx.x / block_size_K;
     const uint innerColA = threadIdx.x % block_size_K;
-    const uint innerRowA = threadIdx.x / block_size_N;
-    const uint innerColA = threadIdx.x % block_size_N;
+    const uint innerRowB = threadIdx.x / block_size_N;
+    const uint innerColB = threadIdx.x % block_size_N;
 
     A += cRow * block_size_M + K;    // row = cRow, col = 0
     B += cCol * block_size_N;
@@ -31,7 +31,7 @@ __global__ void __launch_bounds__((block_size_M * block_size_M) / (tile_size_M *
     // registers for fast access
     float thread_results[tile_size_M * tile_size_N] = {0.0};
     float M_register[tile_size_M] = {0.0}; // for A values
-    float B_register[tile_size_N] = {0.0}; // for B values 
+    float N_register[tile_size_N] = {0.0}; // for B values 
 
     const uint totalResultsBlocktile = block_size_M * block_size_N;
     const uint ThreadsPerBlockTile = totalResultsBlocktile / (tile_size_M * tile_size_N);
@@ -59,26 +59,27 @@ __global__ void __launch_bounds__((block_size_M * block_size_M) / (tile_size_M *
         for (uint dotIdx = 0; dotIdx < block_size_K; ++dotIdx) {
             //load a and b vals into registers
             for (uint i = 0; i < tile_size_M; ++i) {
-                M_register[i] = A_shmem[(threadRow * tile_size_M + i) * block_size_N + dotIdx];
+                M_register[i] = A_shmem[(threadRow * tile_size_M + i) * block_size_K + dotIdx];
             }
 
             for (uint i = 0; i < tile_size_N; ++i) {
-                N_register[i] = B_shmem[dotIdx * block_size_M + i + threadCol * tile_size_N];
+                N_register[i] = B_shmem[dotIdx * block_size_N + i + threadCol * tile_size_N];
             }
         }
         // through each reg 
-        for (uint n_i = 0; n_i < tile_size_M; ++n_i) {
-            for (uint m_i = 0; m_i < tile_size_N; ++m_i) {
-                thread_results[m_i * n_i] += M_register[m_i] * N_register[n_i];
+        for (uint m_i = 0; m_i < tile_size_M; ++m_i) {
+            for (uint n_i = 0; n_i < tile_size_N; ++n_i) {
+                thread_results[m_i * tile_size_N + n_i] += M_register[m_i] * N_register[n_i];
             }
         }
         __syncthreads();
     }
     // load into c 
     #pragma unroll
-    for (int i = 0; i < tile_size_M; ++i) {
-        for (int j = 0; j < tile_size_N; ++j) {
-            C[(threadRow * tile_size_M)] = thread_results
+    for (int resIdxM = 0; resIdxM < tile_size_M; ++resIdxM) {
+        for (int resIdxN = 0; resIdxN < tile_size_N; ++resIdxN) {
+            C[(threadRow * tile_size_M + resIdxM) * N + threadCol * tile_size_N + resIdxN] = alpha * thread_results[resIdxM * tile_size_N + resIdxN]
+             + beta * C[(threadRow * tile_size_M + resIdxM) * N + threadCol * tile_size_N + resIdxN];
         }
     }
 
