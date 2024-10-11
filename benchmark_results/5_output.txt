@@ -1,5 +1,14 @@
 Running kernel 5 on device 0.
 Max size: 4096
 dimensions(m=n=k) 128, alpha: 0.5, beta: 3
-[CUDA ERROR] at file /home/ec2-user/CUDA_Profiling/sgemm.cu:105:
-an illegal memory access was encountered
+Average elapsed time: (0.000035) s, performance: (  121.1) GFLOPS. size: (128).
+dimensions(m=n=k) 256, alpha: 0.5, beta: 3
+Average elapsed time: (0.000058) s, performance: (  581.7) GFLOPS. size: (256).
+dimensions(m=n=k) 512, alpha: 0.5, beta: 3
+Average elapsed time: (0.000104) s, performance: ( 2583.8) GFLOPS. size: (512).
+dimensions(m=n=k) 1024, alpha: 0.5, beta: 3
+Average elapsed time: (0.000231) s, performance: ( 9286.3) GFLOPS. size: (1024).
+dimensions(m=n=k) 2048, alpha: 0.5, beta: 3
+Average elapsed time: (0.001387) s, performance: (12389.0) GFLOPS. size: (2048).
+dimensions(m=n=k) 4096, alpha: 0.5, beta: 3
+Average elapsed time: (0.008677) s, performance: (15839.7) GFLOPS. size: (4096).
