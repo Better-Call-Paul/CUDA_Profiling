@@ -214,7 +214,7 @@ void runSgemm2DBlocktiling(int M, int N, int K, float alpha, float *A, float *B,
             <<<gridDim, blockDim>>>(M, N, K, alpha, A, B, beta, C);
     }
 }
-/*
+
 void runSgemmVectorize(int M, int N, int K, float alpha, float *A, float *B,
                        float beta, float *C) {
     const uint BK = 8;
@@ -238,7 +238,7 @@ void runSgemmVectorize(int M, int N, int K, float alpha, float *A, float *B,
             <<<gridDim, blockDim>>>(M, N, K, alpha, A, B, beta, C);
     }
 }
-
+/*
 void runSgemmResolveBankConflicts(int M, int N, int K, float alpha, float *A,
                                   float *B, float beta, float *C) {
     const uint BK = 8;
@@ -523,10 +523,10 @@ void run_kernel(int kernel_num, int M, int N, int K, float alpha, float *A,
         break;
     case 5:
         runSgemm2DBlocktiling(M, N, K, alpha, A, B, beta, C);
-        break;/*
+        break;
     case 6:
         runSgemmVectorize(M, N, K, alpha, A, B, beta, C);
-        break;
+        break;/*
     case 7:
         runSgemmResolveBankConflicts(M, N, K, alpha, A, B, beta, C);
         break;
