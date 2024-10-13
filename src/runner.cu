@@ -238,7 +238,7 @@ void runSgemmVectorize(int M, int N, int K, float alpha, float *A, float *B,
             <<<gridDim, blockDim>>>(M, N, K, alpha, A, B, beta, C);
     }
 }
-/*
+
 void runSgemmResolveBankConflicts(int M, int N, int K, float alpha, float *A,
                                   float *B, float beta, float *C) {
     const uint BK = 8;
@@ -501,7 +501,7 @@ void runSgemmDoubleBuffering2(int M, int N, int K, float alpha, float *A,
                              K12_TM, K12_TN, K12_NUM_THREADS>
         <<<gridDim, blockDim>>>(M, N, K, alpha, A, B, beta, C);
 }
-*/
+
 
 void run_kernel(int kernel_num, int M, int N, int K, float alpha, float *A,
                 float *B, float beta, float *C, cublasHandle_t handle) {
@@ -526,7 +526,7 @@ void run_kernel(int kernel_num, int M, int N, int K, float alpha, float *A,
         break;
     case 6:
         runSgemmVectorize(M, N, K, alpha, A, B, beta, C);
-        break;/*
+        break;
     case 7:
         runSgemmResolveBankConflicts(M, N, K, alpha, A, B, beta, C);
         break;
@@ -544,7 +544,7 @@ void run_kernel(int kernel_num, int M, int N, int K, float alpha, float *A,
         break;
     case 12:
         runSgemmDoubleBuffering2(M, N, K, alpha, A, B, beta, C);
-        break;*/
+        break;
     default:
         throw std::invalid_argument("Unknown kernel number");
     }

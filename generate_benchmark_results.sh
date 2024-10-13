@@ -20,12 +20,12 @@ SGEMM_EXEC="${BUILD_DIR}/sgemm"
 CUBLAS_SGEMM_EXEC="${BUILD_DIR}/cuBLAS_sgemm"
 
 # Python Script
-PLOT_SCRIPT="${SCRIPTS_DIR}/plot_benchmark_results.py"
+PLOT_SCRIPT="${PROJECT_ROOT}/plot_benchmark_results.py"
 
 # Benchmark Parameters
 REPEAT_TIMES=50
 
-KERNEL_RANGE=(0 1 2 3 4 5 6 7 8 9 10 11 12)  # Kernel numbers to run
+KERNEL_RANGE=(9 0 1 2 3 4 5 6 7 8 9 10 11 12)  # Kernel numbers to run
 
 # ---------------------------
 # Helper Functions
